@@ -1,0 +1,23 @@
+import { Router } from "express";
+import {
+  listar,
+  obtener,
+  crear,
+  actualizar,
+  cambiarEstado,
+  eliminar,
+} from "../controllers/cita.controller.js";
+import { verificarToken } from "../middlewares/auth.middleware.js";
+
+const router = Router();
+
+router.use(verificarToken);
+
+router.get("/", listar);
+router.get("/:id", obtener);
+router.post("/", crear);
+router.put("/:id", actualizar);
+router.patch("/:id/estado", cambiarEstado);
+router.delete("/:id", eliminar);
+
+export default router;
